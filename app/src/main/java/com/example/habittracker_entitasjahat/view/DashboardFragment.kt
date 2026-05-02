@@ -30,10 +30,8 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Inisialisasi ViewModel terlebih dahulu
         viewModel = ViewModelProvider(requireActivity()).get(HabitViewModel::class.java)
 
-        // 2. Baru inisialisasi Adapter dengan melempar ViewModel ke dalamnya
         habitListAdapter = HabitListAdapter(arrayListOf(), viewModel)
 
         binding.recViewHabit.layoutManager = LinearLayoutManager(requireContext())

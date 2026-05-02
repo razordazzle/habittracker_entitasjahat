@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.habittracker_entitasjahat.R
 import com.example.habittracker_entitasjahat.databinding.HabitListItemBinding
 import com.example.habittracker_entitasjahat.model.Habit
-import com.example.habittracker_entitasjahat.viewmodel.HabitViewModel // Pastikan ini ter-import
+import com.example.habittracker_entitasjahat.viewmodel.HabitViewModel
 
 class HabitListAdapter(
     private val habitList: ArrayList<Habit>,
