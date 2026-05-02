@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.habittracker_entitasjahat.R
 import com.example.habittracker_entitasjahat.databinding.HabitListItemBinding
 import com.example.habittracker_entitasjahat.model.Habit
+import com.example.habittracker_entitasjahat.viewmodel.HabitViewModel // Pastikan ini ter-import
 
 class HabitListAdapter(
     private val habitList: ArrayList<Habit>,
-    private val onPlusClick: (Int) -> Unit,
-    private val onMinusClick: (Int) -> Unit
+    private val viewModel: HabitViewModel
 ) : RecyclerView.Adapter<HabitListAdapter.HabitViewHolder>() {
 
     class HabitViewHolder(var binding: HabitListItemBinding)
@@ -61,7 +61,6 @@ class HabitListAdapter(
 
             binding.viewAccent.visibility = View.VISIBLE
 
-            // kalau mau PERSIS kayak screenshot: tombol completed dibikin disable semua
             binding.btnPlus.isEnabled = false
             binding.btnMinus.isEnabled = false
 
@@ -98,14 +97,14 @@ class HabitListAdapter(
         binding.btnPlus.setOnClickListener {
             val itemPosition = holder.bindingAdapterPosition
             if (itemPosition != RecyclerView.NO_POSITION) {
-                onPlusClick(itemPosition)
+                viewModel.increaseProgress(itemPosition)
             }
         }
 
         binding.btnMinus.setOnClickListener {
             val itemPosition = holder.bindingAdapterPosition
             if (itemPosition != RecyclerView.NO_POSITION) {
-                onMinusClick(itemPosition)
+                viewModel.decreaseProgress(itemPosition)
             }
         }
     }
