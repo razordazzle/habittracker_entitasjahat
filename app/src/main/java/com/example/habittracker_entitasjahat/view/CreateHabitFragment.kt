@@ -57,28 +57,24 @@ class CreateHabitFragment : Fragment() {
             val unit = binding.txtUnit.text.toString()
             val iconName = binding.spinnerIcon.selectedItem.toString()
 
-            if (name.isEmpty() || description.isEmpty() || goalText.isEmpty() || unit.isEmpty()) {
-                Toast.makeText(requireContext(), "Semua field wajib diisi", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            if(name.isEmpty() || description.isEmpty() || goalText.isEmpty() || unit.isEmpty()){
+                Toast.makeText(requireContext(),"Semua field wajib diisi",Toast.LENGTH_SHORT).show()
+            }else{
+                val goal=goalText.toIntOrNull()
+                if(goal == null || goal <= 0){
+                    Toast.makeText(requireContext(),"Goal harus berupa angka lebih dari 0",Toast.LENGTH_SHORT).show()
+                }else{
+                    viewModel.addHabit(
+                        name=name,
+                        description=description,
+                        goal=goal,
+                        unit=unit,
+                        iconName=iconName
+                    )
+                    Toast.makeText(requireContext(),"Habit berhasil ditambahkan",Toast.LENGTH_SHORT).show()
+                    findNavController().navigateUp()
+                }
             }
-
-            val goal = goalText.toIntOrNull()
-
-            if (goal == null || goal <= 0) {
-                Toast.makeText(requireContext(), "Goal harus berupa angka lebih dari 0", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            viewModel.addHabit(
-                name = name,
-                description = description,
-                goal = goal,
-                unit = unit,
-                iconName = iconName
-            )
-
-            Toast.makeText(requireContext(), "Habit berhasil ditambahkan", Toast.LENGTH_SHORT).show()
-            findNavController().navigateUp()
         }
     }
 }
