@@ -16,16 +16,7 @@ import com.example.habittracker_entitasjahat.viewmodel.HabitViewModel
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
     private lateinit var viewModel: HabitViewModel
-
-    private val habitListAdapter = HabitListAdapter(
-        arrayListOf(),
-        onPlusClick = { position ->
-            viewModel.increaseProgress(position)
-        },
-        onMinusClick = { position ->
-            viewModel.decreaseProgress(position)
-        }
-    )
+    private lateinit var habitListAdapter: HabitListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +31,8 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity()).get(HabitViewModel::class.java)
+
+        habitListAdapter = HabitListAdapter(arrayListOf(), viewModel)
 
         binding.recViewHabit.layoutManager = LinearLayoutManager(requireContext())
         binding.recViewHabit.adapter = habitListAdapter
