@@ -5,23 +5,33 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.habittracker_entitasjahat.db.AppDatabase
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.Job
+import kotlin.coroutines.CoroutineContext
+class LoginViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val userDao = AppDatabase.getDatabase(application).userDao()
-
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
     val loginResult = MutableLiveData<Boolean?>()
 
     fun login(username: String, password: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val user = userDao.login(username, password)
-            loginResult.postValue(user != null)
+        launch {
+            val db = AppDatabase.getDatabase(getApplication())
+            val user = db.userDao().login(username, password)
+
+            if (user != null) {
+                loginResult.postValue(true)
+            } else {
+                loginResult.postValue(false)
+            }
         }
     }
 
     fun resetLoginResult() {
-        loginResult.value = null
+        loginResult.value = false
     }
 }

@@ -32,13 +32,12 @@ class LoginFragment : Fragment() {
 
         sessionManager = SessionManager(requireContext())
 
-        // Bonus: kalau sesi sebelumnya masih tersimpan, langsung masuk Dashboard
+        //kalau sesi sebelumnya masih tersimpan, langsung masuk Dashboard
         if (sessionManager.isLoggedIn()) {
             findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
             return
         }
-
-        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         binding.txtError.visibility = View.GONE
 
@@ -55,9 +54,7 @@ class LoginFragment : Fragment() {
         }
 
         viewModel.loginResult.observe(viewLifecycleOwner, Observer { isSuccess ->
-            if (isSuccess == null) return@Observer
-
-            if (isSuccess) {
+            if (isSuccess == true) {
                 binding.txtError.visibility = View.GONE
                 sessionManager.saveSession(username = binding.txtUsername.text.toString().trim())
                 findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
@@ -65,8 +62,6 @@ class LoginFragment : Fragment() {
                 binding.txtError.text = "Username atau password salah"
                 binding.txtError.visibility = View.VISIBLE
             }
-
-            viewModel.resetLoginResult()
         })
     }
 }

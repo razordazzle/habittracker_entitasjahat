@@ -9,8 +9,8 @@ import com.example.habittracker_entitasjahat.model.User
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(user: User)
+    fun insertUser(user: User) // Hapus kata kunci suspend
 
     @Query("SELECT * FROM user WHERE username = :username AND password = :password LIMIT 1")
-    suspend fun login(username: String, password: String): User?
+    fun login(username: String, password: String): User?
 }
