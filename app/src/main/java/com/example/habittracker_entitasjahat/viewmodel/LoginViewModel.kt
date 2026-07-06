@@ -3,8 +3,7 @@ package com.example.habittracker_entitasjahat.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.example.habittracker_entitasjahat.db.AppDatabase
+import com.example.habittracker_entitasjahat.database.AppDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,9 +28,5 @@ class LoginViewModel(application: Application) : AndroidViewModel(application), 
                 loginResult.postValue(false)
             }
         }
-    }
-
-    fun resetLoginResult() {
-        loginResult.value = false
     }
 }

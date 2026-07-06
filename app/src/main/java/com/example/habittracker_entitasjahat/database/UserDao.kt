@@ -1,4 +1,4 @@
-package com.example.habittracker_entitasjahat.db
+package com.example.habittracker_entitasjahat.database
 
 import androidx.room.Dao
 import androidx.room.Insert

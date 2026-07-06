@@ -97,19 +97,19 @@ class HabitListAdapter(
         binding.btnPlus.setOnClickListener {
             val itemPosition = holder.bindingAdapterPosition
             if (itemPosition != RecyclerView.NO_POSITION) {
-                viewModel.increaseProgress(itemPosition)
+                viewModel.increaseProgress(habit)
             }
         }
 
         binding.btnMinus.setOnClickListener {
             val itemPosition = holder.bindingAdapterPosition
             if (itemPosition != RecyclerView.NO_POSITION) {
-                viewModel.decreaseProgress(itemPosition)
+                viewModel.decreaseProgress(habit)
             }
         }
     }
 
-    fun updateHabitList(newHabitList: ArrayList<Habit>) {
+    fun updateHabitList(newHabitList: List<Habit>) {
         habitList.clear()
         habitList.addAll(newHabitList)
         notifyDataSetChanged()
