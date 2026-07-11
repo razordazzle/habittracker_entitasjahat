@@ -10,7 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.example.habittracker_entitasjahat.model.Habit
-import com.example.habittracker_entitasjahat.database.HabitDao
 
 @Database(entities = [User::class, Habit::class], version = 2, exportSchema = false)
 
@@ -29,7 +28,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "habit_tracker_db"
                 )
-                    .fallbackToDestructiveMigration(false)
+                    .fallbackToDestructiveMigration()
                     .addCallback(databaseCallback)
                     .build()
 
