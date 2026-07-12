@@ -1,148 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/bg_card_habit">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="habit"
+            type="com.example.habittracker_entitasjahat.model.Habit"/>
+        <variable
+            name="viewModel"
+            type="com.example.habittracker_entitasjahat.viewmodel.HabitViewModel"/>
+    </data>
 
-    <View
-        android:id="@+id/viewAccent"
-        android:layout_width="4dp"
-        android:layout_height="0dp"
-        android:background="#5FA965"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgIcon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/bg_icon_box"
-        android:padding="8dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/baseline_water_drop_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtHabitName"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="8dp"
-        android:text="Drink Water"
-        android:textColor="#222222"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/txtStatus"
-        app:layout_constraintStart_toEndOf="@id/imgIcon"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_status_in_progress"
-        android:paddingStart="12dp"
-        android:paddingTop="4dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="4dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="In Progress"
-        android:textColor="#444444"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:text="Stay hydrated throughout the day"
-        android:textColor="#777777"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imgIcon"
-        app:layout_constraintTop_toBottomOf="@id/txtHabitName" />
-
-    <TextView
-        android:id="@+id/txtProgressLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Progress"
-        android:textColor="#777777"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgIcon" />
-
-    <TextView
-        android:id="@+id/txtProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3 / 8 glasses"
-        android:textColor="#222222"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txtProgressLabel" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="8dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="8dp"
-        android:max="100"
-        android:progress="0"
-        android:progressTint="#6A00F4"
-        android:progressBackgroundTint="#E8DBFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtProgressLabel" />
-
-    <ImageButton
-        android:id="@+id/btnMinus"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/bg_circle_gray"
-        android:padding="10dp"
-        android:src="@drawable/baseline_remove_24"
-        app:layout_constraintEnd_toStartOf="@id/btnPlus"
-        app:layout_constraintTop_toBottomOf="@id/progressBar" />
-
-    <ImageButton
-        android:id="@+id/btnPlus"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/bg_circle_purple"
-        android:padding="10dp"
-        android:src="@drawable/baseline_add_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressBar" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_card_habit">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/viewAccent"
+            android:layout_width="4dp"
+            android:layout_height="0dp"
+            android:background="#5FA965"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/bg_icon_box"
+            android:padding="8dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/baseline_water_drop_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtHabitName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{habit.name}"
+            android:textColor="#222222"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/txtStatus"
+            app:layout_constraintStart_toEndOf="@id/imgIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_status_in_progress"
+            android:paddingStart="12dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="4dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:text='@{habit.progress >= habit.goal ? "Completed" : "In Progress"}'
+            android:textColor="#444444"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{habit.description}"
+            android:textColor="#777777"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgIcon"
+            app:layout_constraintTop_toBottomOf="@id/txtHabitName" />
+
+        <TextView
+            android:id="@+id/txtProgressLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Progress"
+            android:textColor="#777777"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgIcon" />
+
+        <TextView
+            android:id="@+id/txtProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{habit.progress + " / " + habit.goal + " " + habit.unit}'
+            android:textColor="#222222"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtProgressLabel" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:max="@{habit.goal}"
+            android:progress="@{habit.progress}"
+            android:progressTint="#6A00F4"
+            android:progressBackgroundTint="#E8DBFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtProgressLabel" />
+
+        <ImageButton
+            android:id="@+id/btnMinus"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bg_circle_gray"
+            android:padding="10dp"
+            android:src="@drawable/baseline_remove_24"
+            android:onClick="@{() -> viewModel.decreaseProgress(habit)}"
+            app:layout_constraintEnd_toStartOf="@id/btnPlus"
+            app:layout_constraintTop_toBottomOf="@id/progressBar" />
+
+        <ImageButton
+            android:id="@+id/btnPlus"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_circle_purple"
+            android:padding="10dp"
+            android:src="@drawable/baseline_add_24"
+            android:onClick="@{() -> viewModel.increaseProgress(habit)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progressBar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

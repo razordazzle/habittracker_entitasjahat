@@ -34,9 +34,13 @@ class HabitListAdapter(
         val habit = habitList[position]
         val binding = holder.binding
 
-        binding.txtHabitName.text = habit.name
-        binding.txtDescription.text = habit.description
-        binding.txtProgress.text = "${habit.progress} / ${habit.goal} ${habit.unit}"
+//        binding.txtHabitName.text = habit.name
+//        binding.txtDescription.text = habit.description
+//        binding.txtProgress.text = "${habit.progress} / ${habit.goal} ${habit.unit}"
+
+        binding.habit = habit
+        binding.viewModel = viewModel
+        binding.executePendingBindings()
 
         binding.progressBar.max = habit.goal
         binding.progressBar.progress = habit.progress
@@ -94,19 +98,19 @@ class HabitListAdapter(
                 ColorStateList.valueOf(Color.parseColor("#9E9E9E"))
         }
 
-        binding.btnPlus.setOnClickListener {
-            val itemPosition = holder.bindingAdapterPosition
-            if (itemPosition != RecyclerView.NO_POSITION) {
-                viewModel.increaseProgress(habit)
-            }
-        }
-
-        binding.btnMinus.setOnClickListener {
-            val itemPosition = holder.bindingAdapterPosition
-            if (itemPosition != RecyclerView.NO_POSITION) {
-                viewModel.decreaseProgress(habit)
-            }
-        }
+//        binding.btnPlus.setOnClickListener {
+//            val itemPosition = holder.bindingAdapterPosition
+//            if (itemPosition != RecyclerView.NO_POSITION) {
+//                viewModel.increaseProgress(habit)
+//            }
+//        }
+//
+//        binding.btnMinus.setOnClickListener {
+//            val itemPosition = holder.bindingAdapterPosition
+//            if (itemPosition != RecyclerView.NO_POSITION) {
+//                viewModel.decreaseProgress(habit)
+//            }
+//        }
     }
 
     fun updateHabitList(newHabitList: List<Habit>) {
