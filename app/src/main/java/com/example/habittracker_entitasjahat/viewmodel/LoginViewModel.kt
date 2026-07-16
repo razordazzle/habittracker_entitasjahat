@@ -9,24 +9,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
-class LoginViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
+class LoginViewModel(application: Application)
+    : AndroidViewModel(application), CoroutineScope {
 
+    private val userDao = AppDatabase.getDatabase(application).userDao()
+    val loginResult = MutableLiveData<Boolean?>()
+    private var job = Job()
 
-    private val job = Job()
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
-    val loginResult = MutableLiveData<Boolean?>()
 
     fun login(username: String, password: String) {
         launch {
-            val db = AppDatabase.getDatabase(getApplication())
-            val user = db.userDao().login(username, password)
-
-            if (user != null) {
-                loginResult.postValue(true)
-            } else {
-                loginResult.postValue(false)
-            }
+            val user = userDao.login(username, password)
+            loginResult.postValue(user != null)
         }
     }
 }
