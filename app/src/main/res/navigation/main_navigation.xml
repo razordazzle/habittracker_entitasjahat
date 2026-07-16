@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_createHabitFragment"
             app:destination="@id/createHabitFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_editHabitFragment"
+            app:destination="@id/editHabitFragment" />
 
     </fragment>
 
@@ -36,5 +39,16 @@
         android:name="com.example.habittracker_entitasjahat.view.CreateHabitFragment"
         android:label="Create Habit"
         tools:layout="@layout/fragment_create_habit" />
+
+    <fragment
+        android:id="@+id/editHabitFragment"
+        android:name="com.example.habittracker_entitasjahat.view.EditHabitFragment"
+        android:label="Edit Habit"
+        tools:layout="@layout/fragment_edit_habit">
+
+        <argument
+            android:name="habitId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

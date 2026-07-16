@@ -8,6 +8,7 @@ import com.example.habittracker_entitasjahat.database.HabitDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HabitViewModel(application: Application) : AndroidViewModel(application) {
     private val db=AppDatabase.getDatabase(getApplication())
@@ -32,6 +33,18 @@ class HabitViewModel(application: Application) : AndroidViewModel(application) {
         if(habit.progress>0){
             habit.progress--
             CoroutineScope(Dispatchers.IO).launch{habitDao.updateHabit(habit)}
+        }
+    }
+
+    suspend fun getHabitById(id: Int): Habit? {
+        return withContext(Dispatchers.IO) {
+            habitDao.getHabitById(id)
+        }
+    }
+
+    fun updateHabitData(habit: Habit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            habitDao.updateHabit(habit)
         }
     }
 }

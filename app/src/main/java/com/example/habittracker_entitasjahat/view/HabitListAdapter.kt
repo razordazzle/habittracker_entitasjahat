@@ -2,6 +2,7 @@ package com.example.habittracker_entitasjahat.view
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -111,6 +112,13 @@ class HabitListAdapter(
 //                viewModel.decreaseProgress(habit)
 //            }
 //        }
+        binding.root.setOnClickListener { view ->
+            val bundle = Bundle().apply {
+                putInt("habitId", habit.id)
+            }
+            androidx.navigation.Navigation.findNavController(view)
+                .navigate(R.id.action_dashboardFragment_to_editHabitFragment, bundle)
+        }
     }
 
     fun updateHabitList(newHabitList: List<Habit>) {

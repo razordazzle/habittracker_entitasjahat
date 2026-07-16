@@ -21,4 +21,7 @@ interface HabitDao {
 
     @Delete
     fun deleteHabit(habit:Habit)
+
+    @Query("SELECT * FROM habits WHERE id = :id LIMIT 1")
+    fun getHabitById(id: Int): Habit?
 }
