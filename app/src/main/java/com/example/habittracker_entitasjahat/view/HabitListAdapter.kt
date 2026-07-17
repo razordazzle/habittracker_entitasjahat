@@ -112,7 +112,7 @@ class HabitListAdapter(
 //                viewModel.decreaseProgress(habit)
 //            }
 //        }
-        binding.root.setOnClickListener { view ->
+        binding.txtHabitName.setOnClickListener { view ->
             val bundle = Bundle().apply {
                 putInt("habitId", habit.id)
             }
